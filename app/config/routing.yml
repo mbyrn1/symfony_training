@@ -1,3 +1,22 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+random_number:
+    path: /lucky/number/{max}
+    defaults:
+        _controller: AppBundle:Lucky:number
+        max: 100
+    requirements:
+        max: '\d+'
+    methods: [GET,POST]
+products:
+    path: /products/
+    defaults:
+        _controller: AppBundle:Products:index
+    methods: [GET]
+products_new:
+    methods: [GET]
+    path: /products/new
+    defaults:
+        _controller: AppBundle:Products:new
+    methods: [GET]

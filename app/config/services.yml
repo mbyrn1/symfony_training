@@ -1,9 +1,28 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/service_container.html
 parameters:
+    foo: 'bar'
+    db_path: 'sqlite:%kernel.root_dir%/../var/data.db'
 #    parameter_name: value
 
 services:
+# can set defaults like this so autowire happens for all services
+#    _defaults:
+#        autowire: true
+    product_repository:
+        class: AppBundle\Repository\ProductRepository
+        autowire: true
+        #arguments:
+        #    - '@app.pdo'
+    app.pdo:
+        class: PDO
+        arguments:
+            - "%db_path%"
+        calls:
+            - method: setAttribute
+              arguments:
+                  - '@= constant("PDO::ATTR_ERRMODE")'
+                  - '@= constant("PDO::ERRMODE_EXCEPTION")'
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

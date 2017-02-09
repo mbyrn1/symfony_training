@@ -1,0 +1,19 @@
+{# app/Resources/views/products/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }}
+    Lucky Number Slevin
+{% endblock %}
+{% block body %}
+    <h1>Products</h1>
+    <h3><a href="{{ path('products_new') }}">Add New Product</a></h3>
+    <table id="products" class="product table table-hover">
+        {% for product in products %}
+            <tr class="product table table-hover">
+                <td><a href="{{ path('products') }}">{{ product.name }}</a></td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.createdAt|ago }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

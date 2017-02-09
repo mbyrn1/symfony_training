@@ -1,0 +1,74 @@
+
+Use PHP Storm, install these plugins
+Preferences > Plugins > Browse repositories
+1. Symfony plugin
+2. PHP Annotations
+
+Once in php storm, right click 'src' folder in solution and mark as "source root"
+
+-var/cache, right click and mark as "excluded"
+- github.com/bamarni/symfony-console-autocomplete
+
+-put vs post - put is for updating an item, post is for creating
+
+- item-potent - should mean that an item can be put as many times as you want and have no side effects vs post which will continue to create items
+
+-patch v  put - a put should be sending all data to update an item. patch should be a partial update
+
+#PHP Console debugging commands
+php bin/console --> gives a list of commands
+
+#Routing Stuff - shows all routes, routes can be annotated above a controller or put into a YML file (app/config/routing.yml)
+- php bin/console debug:router
+- if routes are confusing you can skip the format
+-- e.g. _controller: AppBundle/Controller/LuckyController::numberAction
+-- instead of _controller: AppBundle:Lucky:number
+- can use extra stuff in routing file like requirements, conditions, methods
+
+#Controllers
+    -make sure to name the controller files as LuckyController , otherwise symfony complains
+
+#Bundles
+    - if you extend the base Controller from symfony you get access to the container which has all the built in bundles
+    $this->container
+
+# TWIG
+    two main syntaxes
+    "say something
+        "{{}} --echos whatever is passed to twig, can put strings, variables, objects, functions in it
+    "do something"
+        can also use {%%} - e.g. for http://twig.sensiolabs.org/doc/2.x/
+
+# Container
+    - symfony offers a 'container' that is basically a key-value store of various PHP class that you can easily reference and use
+    -- you need to extend the controller class to access it
+    -- see examples in services.yml file for app.pdo,
+
+# Services (in the container)
+    - lots of parameters to mess with, look at services.yml for examples
+
+# PHP type hints
+    - can specify type of object by doing a \Objectname before the $param in the function/constructor, see productrepository
+
+
+# app root directory
+    - use %kernel.root_dir% to reference /app for your current symfony app
+
+# Installing composer bundles, installs stuff into vendor directory
+## creates a composer.lock file (can add stuff to composer.json file for requirements), the lock file says what is currently
+### downloaded and locks it to that version
+    -e.g. composer require knplabs/knp-time-bundle
+
+# When you want to goto prod you will probably need to clear the cache, do so per environment like this
+php bin/console cache:clear --env=prod
+#if you put in localhost:8000/app.php/ you will go to your production php instance instead of dev
+
+# for app/config
+- config files are per env, all end up loading config.yml
+- parameters, .dist is the default one, these typically are machine specific (e.g. database params)
+- services.yml allow you add stuff to container
+
+# other stuff for prod deploys
+- use this method to create a bunch of auto-load stuff so it doesn't need to run everytime, this creates all the cached class location
+to autoload_classmap.php
+composer dump-autoload --optimize
