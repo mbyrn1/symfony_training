@@ -10,7 +10,7 @@
     <table id="products" class="product table table-hover">
         {% for product in products %}
             <tr class="product ">
-                <td><a href="{{ path('products_update', {'id': product.id})}}">{{ product.name }}</a></td>
+                <td><a href="{{ path('products_get', {'id': product.id})}}">{{ product.name }}</a></td>
                 <td>${{ product.price }}</td>
                 <td>{{ product.createdAt|ago }}</td>
             </tr>

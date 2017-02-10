@@ -51,6 +51,7 @@ class DefaultControllerTest extends TestCase
 
     public function testCreate()
     {
+        /* Normally you dont boot kernel for unit tests, this was just to show how to do it*/
         $kernel = new \AppKernel('test', true);
         $kernel->boot();
         $container = $kernel->getContainer();

@@ -8,13 +8,20 @@
 
 namespace AppBundle\Controller;
 use AppBundle\Form\ProductFormType;
+use AppBundle\Security\SimpleAuthorizer;
+use GuzzleHttp\Exception\RequestException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 
-class ProductsController extends Controller
+class ProductsController extends Controller implements SimpleAuthorizer
 {
+    public function preMethodCheck()
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+    }
+
     // /products
     public function indexAction()
     {
@@ -69,7 +76,14 @@ class ProductsController extends Controller
         $product_repo = $this->container
             ->get('product_repository');
 
-        $product = $product_repo->find($id);
+        try
+        {
+            $product = $product_repo->find($id);
+        }
+        catch(RequestException $rex)
+        {
+            throw $this->createNotFoundException();
+        }
 
         $form = $this->createForm(
             ProductFormType::class,
@@ -94,6 +108,26 @@ class ProductsController extends Controller
 
         return $this->render('products/edit.html.twig', array(
             'productForm' => $form->createView()
+        ));
+    }
+    // /products/get/{id}
+    public function getAction(Request $request, $id)
+    {
+        $product_repo = $this->container
+            ->get('product_repository');
+
+        try
+        {
+            $product = $product_repo->find($id);
+            // Can use voters to say whether or not a person should access something
+            //$this->denyAccessUnlessGranted('VIEW',$product);
+        }
+        catch(RequestException $rex)
+        {
+            throw $this->createNotFoundException();
+        }
+        return $this->render('products/show.html.twig', array(
+            'product' => $product
         ));
     }
 }

@@ -93,6 +93,13 @@ composer dump-autoload --optimize
         tags:
             - { name: kernel.event_subscriber
 
+# for how symfony handles requests
+    -look in Symfony\Component\HttpKernel.php -> it sends an event that gets the route, then it gets the controller base
+    d on that route
+    -there are multiple hook points in symfony that you can set listeners to while symfony is routing, creating, and
+    returning the response. see all events here: php bin/console debug:event-dispatcher
+    -possible to just return objects from controller, then have an event listener that can transpose it into json or xml
+
 # PHP Debugging look ing stuff,
 php bin/console debug:
     -list of commands
@@ -101,5 +108,31 @@ php bin/console debug:
 php bin/console debug:twig
     -e.g. list of twig functions
 
+# for handling errors
+- there is a exception event that you can add subscribers to in order to custom handle exceptions
+- i added a try/catch to return a web 404 instead of the API's 404 in the product/update method
 
+# for async responses you can configure your apache/php to stream responses, but by default it normally waits for a PHP
+  process to fully terminate before sending a response
 
+# Annotations - magical things that you put in comments before a controller function, also useful for PHP docs
+
+#Security
+    -look at rules in security.yml
+
+# If you want to have many controllers and fucntions use a security check
+    - create an interface class, have controlelrs implement it, have one method that checks the security role
+    - create a listener that runs on the controller event that sees if a controller implements the _precheck method
+        you wrote, and run it
+
+#when doing security you need
+    - user class
+    - authenticator class
+    - userprovider class
+
+# Logging - use monolog
+    -look at configuration in monolog bundle, it will show you all the different handlers for types of logs you can use
+        and configure in the config files
+
+# For creating your own bundles, look at src/datto/productbundle/dattoroductbundle
+    -

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} - Login
+{% endblock %}
+{% block body %}
+    <h1>Login</h1>
+    <div class="col-md-6">
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" /><br />
+            <button type="submit" class="btn" formnovalidate>Login</button>
+        </form>
+    </div>
+{% endblock %}

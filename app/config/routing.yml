@@ -19,6 +19,11 @@ products_new:
     path: /products/new
     defaults:
         _controller: AppBundle:Products:new
+products_get:
+    methods: [GET]
+    path: /products/{id}
+    defaults:
+        _controller: AppBundle:Products:get
 products_update:
     methods: [GET, POST]
     path: /products/update/{id}
@@ -29,3 +34,13 @@ products_reset:
     path: /products/reset
     defaults:
         _controller: AppBundle:Products:reset
+login:
+    methods: [GET, POST]
+    path: /login
+    defaults:
+        _controller: AppBundle:Login:index
+logout:
+    methods: [GET]
+    path: /logout
+    defaults:
+        _controller: AppBundle:Logout:index

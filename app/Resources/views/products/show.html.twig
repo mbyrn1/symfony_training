@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }}
+    Lucky Number Slevin
+{% endblock %}
+{% block body %}
+    <h1>Product</h1>
+    <table id="products" class="product table table-hover">
+        <tr class="product ">
+            <div><h3>{{ product.name }}</h3></div>
+            <div>{{ product.description }}</div><br />
+            <div>${{ product.price }}</div><br />
+            <div>{{ product.createdAt|ago }}</div><br />
+            <div><a href="{{ path('products_update', {'id': product.id})}}">Edit</a></div>
+        </tr>
+    </table>
+{% endblock %}

@@ -33,6 +33,22 @@ services:
         autowire: true
         tags:
             - { name: kernel.event_subscriber }
+    app.controller_subscriber:
+            class: AppBundle\Subscriber\ControllerSubscriber
+            autowire: true
+            tags:
+                - { name: kernel.event_subscriber }
+    app.simple_login_authenticator:
+        class: AppBundle\Security\SimpleLoginAuthenticator
+        autowire: true
+    app.json_file_user_provider:
+        class: AppBundle\Providers\JsonFileUserProvider
+        arguments:
+            - '%kernel.root_dir%/../var/users.json'
+    app.security.vote:
+        class: AppBundle\Voter\RandomVoter
+        tags:
+            - { name: security.voter }
 #        arguments:
 #            -
 #               base_uri: 'http://107.23.36.113'

@@ -19,9 +19,7 @@ class UserAgentSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
         $userAgent = $request
             ->headers->get('User-Agent');
-        dump($request);
-        dump($userAgent);
-        //die('it works! Probably...');
+        $request->attributes->set('userAgent', $userAgent);
     }
 
     public static function getSubscribedEvents()
