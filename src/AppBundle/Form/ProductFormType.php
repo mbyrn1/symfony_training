@@ -1,6 +1,6 @@
 <?php
 namespace AppBundle\Form;
-use AppBundle\Model\Product;
+use Datto\ProductBundle\Model\Product;
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -24,7 +24,7 @@ class ProductFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Product::class  
+            'data_class' => Product::class
         ]);
     }
 }

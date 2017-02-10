@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Model;
+namespace Datto\ProductBundle\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Product

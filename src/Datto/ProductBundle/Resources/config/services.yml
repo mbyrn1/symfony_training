@@ -1,0 +1,11 @@
+services:
+    product_repository:
+        class: Datto\ProductBundle\Repository\ProductRepository
+        #autowire: true
+        arguments:
+            - '@app.guzzle'
+            - '@logger'
+            - '@serializer'
+    app.guzzle:
+        class: GuzzleHttp\Client
+        arguments: [{ base_uri: 'http://107.23.36.113', timeout: 20.0 }]

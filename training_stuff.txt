@@ -135,4 +135,6 @@ php bin/console debug:twig
         and configure in the config files
 
 # For creating your own bundles, look at src/datto/productbundle/dattoroductbundle
-    -
+    - once this was created you just needed to add it to appkernel file to include it in the main app
+    - then you would just separate the product bundle into its own repo and add a composer.json
+        -composer would tell things what depencies it has, autoloader stuff, and say the namespace of Datto

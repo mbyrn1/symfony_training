@@ -6,8 +6,8 @@
  * Time: 1:58 PM
  */
 
-namespace AppBundle\Repository;
-use AppBundle\Model\Product;
+namespace Datto\ProductBundle\Repository;
+use Datto\ProductBundle\Model\Product;
 use GuzzleHttp\Client;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

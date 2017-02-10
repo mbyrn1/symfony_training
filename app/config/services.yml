@@ -4,18 +4,13 @@ parameters:
     foo: 'bar'
     db_path: 'sqlite:%kernel.root_dir%/../var/data.db'
 #    parameter_name: value
-
+# temporary, not the right way to do this... need to  use depency injection
+#imports:
+#    - { resource: '@DattoProductBundle/Resources/config/services.yml' }
 services:
 # can set defaults like this so autowire happens for all services
 #    _defaults:
 #        autowire: true
-    product_repository:
-        class: AppBundle\Repository\ProductRepository
-        #autowire: true
-        arguments:
-            - '@app.guzzle'
-            - '@logger'
-            - '@serializer'
     app.pdo:
         class: PDO
         arguments:
@@ -25,9 +20,6 @@ services:
               arguments:
                   - '@= constant("PDO::ATTR_ERRMODE")'
                   - '@= constant("PDO::ERRMODE_EXCEPTION")'
-    app.guzzle:
-        class: GuzzleHttp\Client
-        arguments: [{ base_uri: 'http://107.23.36.113', timeout: 20.0 }]
     app.user_agent_subscriber:
         class: AppBundle\Subscriber\UserAgentSubscriber
         autowire: true
