@@ -15,8 +15,17 @@ products:
         _controller: AppBundle:Products:index
     methods: [GET]
 products_new:
-    methods: [GET]
+    methods: [GET, POST]
     path: /products/new
     defaults:
         _controller: AppBundle:Products:new
+products_update:
+    methods: [GET, POST]
+    path: /products/update/{id}
+    defaults:
+        _controller: AppBundle:Products:update
+products_reset:
     methods: [GET]
+    path: /products/reset
+    defaults:
+        _controller: AppBundle:Products:reset

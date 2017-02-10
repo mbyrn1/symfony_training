@@ -31,6 +31,9 @@
                 </div>
             </div>
             <div class="col-md-9">
+                {% for msg in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">{{ msg }}</div>
+                {% endfor %}
                 {% block body %}{% endblock %}
                 {% block javascripts %}{% endblock %}
             </div>

@@ -1,12 +1,23 @@
 <?php
 
 namespace AppBundle\Model;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Product
 {
     private $id;
+    /**
+     * @Assert\NotBlank()
+     */
     private $name;
+    /**
+     * @Assert\NotBlank()
+     */
     private $description;
+    /**
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(100, message="This product must be super-expensive! (over 100)")
+     */
     private $price;
     private $created_at;
 

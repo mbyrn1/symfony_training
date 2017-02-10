@@ -28,11 +28,13 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
-        "knplabs/knp-time-bundle": "^1.7"
+        "knplabs/knp-time-bundle": "^1.7",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "phpunit/phpunit": "^4.8"
     },
     "scripts": {
         "symfony-scripts": [
@@ -61,5 +63,8 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": null
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
     }
 }

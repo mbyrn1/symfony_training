@@ -44,6 +44,7 @@ php bin/console --> gives a list of commands
     -- you need to extend the controller class to access it
     -- see examples in services.yml file for app.pdo,
 
+
 # Services (in the container)
     - lots of parameters to mess with, look at services.yml for examples
 
@@ -72,3 +73,33 @@ php bin/console cache:clear --env=prod
 - use this method to create a bunch of auto-load stuff so it doesn't need to run everytime, this creates all the cached class location
 to autoload_classmap.php
 composer dump-autoload --optimize
+
+#when writing forms, there is a bunch of auto html stuff and validators
+ -can also add your own templates (e.g. i created one in views/form_themes)
+
+# for doing API calls in PHP we will use guzzle
+- need install guzzle
+
+#including default bundles like logger and serializer is easy to include in a class by adding it to the contructor
+# adding the user statement, and adjusting the services.yml
+
+#running unit tests in PHP from directory
+./vendor/bin/phpunit
+
+#add stuff directly into the symfony load structure (e.g. app_dev -> httpkernel.php ... listeners) see useragentsubscriber and the entry in services for it
+ app.user_agent_subscriber:
+        class: AppBundle\Subscriber\UserAgentSubscriber
+        autowire: true
+        tags:
+            - { name: kernel.event_subscriber
+
+# PHP Debugging look ing stuff,
+php bin/console debug:
+    -list of commands
+ php bin/console debug:event-dispatcher
+    -e.g. getting all the event dispatches
+php bin/console debug:twig
+    -e.g. list of twig functions
+
+
+

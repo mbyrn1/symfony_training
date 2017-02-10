@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} - Edit Product
+{% endblock %}
+{% block body %}
+    <h1>Edit Product</h1>
+    <div class="col-md-6">
+        {{ form_start(productForm) }}
+        {{ form_row(productForm.name) }}
+        {{ form_row(productForm.description) }}
+        {{ form_row(productForm.price, {
+            label: 'Product Price',
+            help: 'matts cool helper'
+
+        }) }}
+        <button type="submit" class="btn" formnovalidate>Update Product</button>
+        {{ form_end(productForm) }}
+    </div>
+{% endblock %}
